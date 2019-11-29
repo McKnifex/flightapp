@@ -1,17 +1,22 @@
 package edu.csumb.flightapp.model;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 // TODO  annotate this class with @Entitry @PrimaryKey, @Ignore
 //  Room should ignore the second constructor with 4 arguments
+//  should be done now, not sure :)
 
+@Entity
 public class LogRecord {
 
     public static final String TYPE_NEW_ACCOUNT ="new account";
     public static final String TYPE_RESERVATION="reservation";
     public static final String TYPE_CANCEL="cancel";
 
-
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     private int id;
     @NonNull
@@ -26,6 +31,7 @@ public class LogRecord {
     public LogRecord(){
     }
 
+    @Ignore
     public LogRecord(java.util.Date datetime, String type, String username, String message){
         this.time = datetime.getTime();
         this.transaction_type = type;
@@ -88,3 +94,4 @@ public class LogRecord {
     }
 
 }
+

@@ -42,5 +42,22 @@ public interface FlightDao {
     @Update
     void updateFlight(Flight flight);
 
+    @Query("select * from LogRecord order by time desc")
+    List<LogRecord> getAllLogRecords();
+
+    @Insert
+    void addLogRecord(LogRecord rec);
+
+    //@Insert
+    //long addReservation(Reservation res);
+
+    //TODO
+    //@Delete
+    //void deleteReservation(Reservation res);
+    //Todo
+    //@Query("select * from reservation where username = :name")
+    //List<Reservation> getReservationForUser(String name);
+
+
 
 }
