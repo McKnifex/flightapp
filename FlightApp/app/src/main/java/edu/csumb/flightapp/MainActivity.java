@@ -44,7 +44,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button login_button = findViewById(R.id.login);
+        Button reserve_seat_button = findViewById(R.id.reserve_seat);
+        reserve_seat_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // call the ShowUser Activity
+                Log.d("MainActivity", "onClick for reserve seat called");
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        Button cancel_reservation_button = findViewById(R.id.cancel_reservation);
+        cancel_reservation_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // call the ShowUser Activity
+                Log.d("MainActivity", "onClick for cancel reservation called");
+                Intent intent = new Intent(MainActivity.this, CreateAccountActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        Button manage_system_button = findViewById(R.id.manage_system);
+        manage_system_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                // call the ShowUser Activity
+                Log.d("MainActivity", "onClick for manage system is called");
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        /*Button login_button = findViewById(R.id.login);
 
         login_button.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -55,9 +90,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });
+        });*/
 
-        Button user_button = findViewById(R.id.show_users);
+        /*Button user_button = findViewById(R.id.show_users);
 
         user_button.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -93,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         //TODO add addition main buttons and controller methods for
         //  Cancel Reservation,

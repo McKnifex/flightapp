@@ -38,13 +38,34 @@
         android:text="Create Account" />
 
     <Button
+        android:id="@+id/reserve_seat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Reserve Seat" />
+
+    <Button
+        android:id="@+id/cancel_reservation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Cancel Reservation" />
+
+    <Button
+        android:id="@+id/manage_system"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Manage System" />
+
+    <!--<Button
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Login" />
+        android:text="Login" />-->
 
-    <Button
+    <!--<Button
         android:id="@+id/show_users"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,7 +92,7 @@
         android:layout_height="wrap_content"
         android:text="View Application Log (Admin)"
         android:gravity="center_horizontal"
-        android:id="@+id/log" />
+        android:id="@+id/log" />-->
 
 
 

@@ -42,7 +42,7 @@ public class ViewLogActivity  extends AppCompatActivity {
             }
         });
 
-        //TODO  use a RecylerView to display LogRecords
+        //DONE  use a RecylerView to display LogRecords
         //   define adapter and item_holder classes
 
         // retrieve all log records from database
