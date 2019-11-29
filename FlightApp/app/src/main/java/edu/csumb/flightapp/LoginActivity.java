@@ -1,5 +1,6 @@
 package edu.csumb.flightapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +35,9 @@ public class LoginActivity extends AppCompatActivity {
                         password.getText().toString().equals("!admiM2")) {
                     // special admin userid
                     MainActivity.username = username.getText().toString();
-                    finish();
+                    Intent intent = new Intent(LoginActivity.this, ViewLogActivity.class);
+                    startActivity(intent);
+                    //finish();
                 }
 
                 String name = username.getText().toString();
