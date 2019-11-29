@@ -1,5 +1,7 @@
 package edu.csumb.flightapp;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,7 +24,7 @@ import edu.csumb.flightapp.model.FlightRoom;
 
 public class SearchActivity extends AppCompatActivity {
 
-    List<Flight> flights = new ArrayList<Flight>();
+    public static List<Flight> flights = new ArrayList<Flight>();
     Adapter adapter;
 
     @Override
@@ -48,11 +51,34 @@ public class SearchActivity extends AppCompatActivity {
                 Log.d("SearchActivity", "onClick search called");
                 EditText from = findViewById(R.id.from_city);
                 EditText to = findViewById(R.id.to_city);
-                flights = FlightRoom.getFlightRoom(SearchActivity.this).dao().
-                        searchFlight(from.getText().toString(),
-                                     to.getText().toString());
-                // notify recycler view that list of flights has changed
-                adapter.notifyDataSetChanged();
+                EditText no_tickets = findViewById(R.id.no_tickets);
+
+                /*LAB* Check if tickets between 1 and 7 */
+                int tickets = Integer.parseInt(no_tickets.getText().toString());
+
+                if(tickets > 0 && tickets <= 7){
+                    flights = FlightRoom.getFlightRoom(SearchActivity.this).dao().
+                            searchFlight(from.getText().toString(),
+                                    to.getText().toString(),tickets);
+
+                    // notify recycler view that list of flights has changed
+                    adapter.notifyDataSetChanged();
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SearchActivity.this);
+                    builder.setTitle("Due to ticket restriction, you can only buy up to 7 tickets.");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(SearchActivity.this,
+                                    SearchActivity.class);
+
+                            startActivity(intent);
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
 
             }
         });

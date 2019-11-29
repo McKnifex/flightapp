@@ -33,8 +33,8 @@ public interface FlightDao {
     @Query("select * from Flight")
     List<Flight> getAllFlights();
 
-    @Query("select * from Flight where departure=:departure and arrival=:arrival")
-    List<Flight> searchFlight(String departure, String arrival);
+    @Query("select * from Flight where departure=:departure and arrival=:arrival and capacity>=:capacity")
+    List<Flight> searchFlight(String departure, String arrival, int capacity);
 
     @Insert
     void addFlight(Flight flight);
