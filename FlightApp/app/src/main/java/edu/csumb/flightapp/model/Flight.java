@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import edu.csumb.flightapp.Formatter;
+
 @Entity
 public class Flight {
     @PrimaryKey(autoGenerate = true)
@@ -107,11 +109,11 @@ public class Flight {
         this.availableSeats = availableSeats;
     }
 
-    //TODO Format Price to 2 decimal points
+    //DONE Format Price to 2 decimal points
     @Override
     public String toString() {
         return "id:  "+id+" flightNo:  "+flightNo+"\nfrom:  "+departure+" to  "+arrival+
-                "\ndeparture time:  "+departureTime + "\nCapacity: " + capacity + "\n Price: $"+ price;
+                "\ndeparture time:  "+departureTime + "\nCapacity: " + capacity + "\n Price: $"+ Formatter.formatter(price);
     }
 
 }

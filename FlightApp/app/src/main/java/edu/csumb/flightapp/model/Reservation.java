@@ -5,17 +5,12 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import java.text.Normalizer;
-
 import edu.csumb.flightapp.Formatter;
-//import edu.csumb.flightapp.FlightApp
+
 
 @Entity
-public class Reservation {
-    public void setTime(@NonNull String time) {
-        this.time = time;
-    }
 
+public class Reservation {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private int id; //reservation no
@@ -61,7 +56,6 @@ public class Reservation {
                 "\nNumber of Tickets: " + tickets;
         d+= "\nReservation Number: " + id;
 
-        //Die klasse muss ich noch coden
         d+= "\nTotal Cost: $" + Formatter.formatter(total);
         return d;
     }
@@ -71,9 +65,8 @@ public class Reservation {
                 " Departure: " + departure + " " + departureTime +
                 " Arrival: " + arrival +
                 " Number of Tickets: " + tickets +
-                " Reservation number: " + id;
-        //+ ebenfall noch coden
-        //" Total Cost: $" + FlightApp.formatPrice(total);
+                " Reservation number: " + id +
+                " Total Cost: $" + Formatter.formatter(total);
 
     }
 
@@ -99,6 +92,9 @@ public class Reservation {
         this.username = username;
     }
 
+    public void setTime(@NonNull String time) {
+        this.time = time;
+    }
 
     @NonNull
     public String getFlightNo() {

@@ -19,7 +19,7 @@ import edu.csumb.flightapp.model.FlightRoom;
 import edu.csumb.flightapp.model.LogRecord;
 
 public class ConfirmReservationActivity extends AppCompatActivity {
-
+    FlightDao dao = FlightRoom.getFlightRoom(ConfirmReservationActivity.this).dao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +41,16 @@ public class ConfirmReservationActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                //TODO update flight capacity
-
+                //update flight capacity
+                Flight updateFlight = SearchActivity.selectedFlight;
+                updateFlight.setCapacity(updateFlight.getCapacity()-SearchActivity.amountTickets);
+                dao.updateFlight(updateFlight);
                 //Log the reservation
                 //write a record to Log table with message that reservation is confirmed.
                 //  include username (but not password) in the message.
                 Date now = new Date();
                 LogRecord rec = new LogRecord(now, LogRecord.TYPE_RESERVATION,
                         MainActivity.username, "");
-                FlightDao dao = FlightRoom.getFlightRoom(ConfirmReservationActivity.this).dao();
                 dao.addLogRecord(rec);
 
                 //Go back to main menu
@@ -65,15 +66,13 @@ public class ConfirmReservationActivity extends AppCompatActivity {
         decline.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //TODO delete res from db
-
+                //delete res from db
+                dao.deleteReservation(CreateReservationActivity.res);
                 //go back to main menu
                 Intent intent = new Intent(ConfirmReservationActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
-
-        //Update flight capacity
     }
 
 }

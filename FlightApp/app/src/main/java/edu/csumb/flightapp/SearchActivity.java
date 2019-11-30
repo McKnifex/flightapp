@@ -1,5 +1,6 @@
 package edu.csumb.flightapp;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,6 +58,13 @@ public class SearchActivity extends AppCompatActivity {
                 EditText to = findViewById(R.id.to_city);
                 EditText no_tickets = findViewById(R.id.no_tickets);
 
+                /*if(from.getText().toString().isEmpty()|to.getText().toString().isEmpty()
+                        ||no_tickets.getText().toString().isEmpty()){
+                    Intent intent = new Intent(SearchActivity.this, SearchActivity.class);
+                    finish();
+                    startActivity(intent);
+                }*/
+
                 /*LAB* Check if tickets between 1 and 7 */
                 int amountTickets = Integer.parseInt(no_tickets.getText().toString());
 
@@ -64,7 +72,23 @@ public class SearchActivity extends AppCompatActivity {
                     flights = FlightRoom.getFlightRoom(SearchActivity.this).dao().
                             searchFlight(from.getText().toString(),
                                     to.getText().toString(),amountTickets);
+                    if(flights.isEmpty()){
+                        AlertDialog.Builder builder = new AlertDialog.Builder(SearchActivity.this);
+                        builder.setTitle("There are no flights available.");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(SearchActivity.this,
+                                        SearchActivity.class);
 
+                                startActivity(intent);
+                            }
+                        });
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
+                    }
                     SearchActivity.amountTickets = amountTickets;
                     // notify recycler view that list of flights has changed
                     adapter.notifyDataSetChanged();
@@ -92,6 +116,7 @@ public class SearchActivity extends AppCompatActivity {
         rv.setLayoutManager( new LinearLayoutManager(this));
         adapter = new Adapter();
         rv.setAdapter( adapter );
+
     }
 
     private class Adapter  extends RecyclerView.Adapter<ItemHolder> {
@@ -109,6 +134,7 @@ public class SearchActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() { return flights.size(); }
+
     }
 
     private class ItemHolder extends RecyclerView.ViewHolder {
@@ -126,10 +152,13 @@ public class SearchActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     selectedFlight = f;
+                    flights.clear();
                     Intent intent = new Intent(SearchActivity.this, CreateReservationActivity.class);
+                    finish();
                     startActivity(intent);
                 }
             });
+
 
         }
     }

@@ -1,5 +1,6 @@
 package edu.csumb.flightapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -25,6 +27,8 @@ public class CreateReservationActivity extends AppCompatActivity {
     private static Flight selectedFlight = SearchActivity.selectedFlight;
 
     public static Reservation res = null;
+    int tries = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("CreateReservatiActivity", "onCreate called");
@@ -54,7 +58,26 @@ public class CreateReservationActivity extends AppCompatActivity {
                 if (user == null) {
                     // unsuccessful login
                     TextView msg = findViewById(R.id.message);
-                    msg.setText("User name or password is invalid.");
+                    msg.setText("User name or password is invalid. Please enter again.");
+
+                    tries += 1;
+                    if(tries == 2){
+                        tries = 0;
+
+                        // inform user that he used to many tries -> return to main menu
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CreateReservationActivity.this);
+                        builder.setTitle("To many fails. Try again.");
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        });
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+
 
                 } else {
                     // successful login

@@ -3,16 +3,11 @@ package edu.csumb.flightapp.model;
 import java.util.List;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import edu.csumb.flightapp.model.User;
-
-
-//TODO update this class to include
-//   query method to read LogRecords
-//      use the annotation @Query("select * from LogRecord order by datetime desc")
-//   insert method to insert new LogRecord into database
 
 @Dao
 public interface FlightDao {
@@ -52,11 +47,12 @@ public interface FlightDao {
     long addReservation(Reservation res);
 
     //TODO
-    //@Delete
-    //void deleteReservation(Reservation res);
+    @Delete
+    void deleteReservation(Reservation res);
+
     //Todo
-    //@Query("select * from reservation where username = :name")
-    //List<Reservation> getReservationForUser(String name);
+    @Query("select * from reservation where username = :name")
+    List<Reservation> getReservationForUser(String name);
 
 
 
