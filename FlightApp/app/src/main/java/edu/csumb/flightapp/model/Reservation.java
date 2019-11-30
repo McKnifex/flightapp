@@ -8,6 +8,10 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class Reservation {
+    public void setTime(@NonNull String time) {
+        this.time = time;
+    }
+
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private int id; //reservation no
@@ -93,6 +97,14 @@ public class Reservation {
     @NonNull
     public String getPassword() {
         return password;
+    }
+
+    public void setUsername(@NonNull String username) {
+        this.username = username;
+    }
+
+    public void setPassword(@NonNull String password) {
+        this.password = password;
     }
 
     @NonNull

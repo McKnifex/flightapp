@@ -115,6 +115,16 @@ public class SearchActivity extends AppCompatActivity {
         public void bind(Flight f ) {
             TextView item = itemView.findViewById(R.id.item_id);
             item.setText(f.toString());
+
+            // make the item clickable
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(SearchActivity.this, CreateReservationActivity.class);
+                    startActivity(intent);
+                }
+            });
+
         }
     }
 }

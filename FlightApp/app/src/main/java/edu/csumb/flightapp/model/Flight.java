@@ -107,9 +107,11 @@ public class Flight {
         this.availableSeats = availableSeats;
     }
 
+    //TODO Format Price to 2 decimal points
     @Override
     public String toString() {
-        return "id:  "+id+" flightNo:  "+flightNo+"\nfrom:  "+departure+" to:  "+arrival+"\ndeparture time:  "+departureTime;
+        return "id:  "+id+" flightNo:  "+flightNo+"\nfrom:  "+departure+" to  "+arrival+
+                "\ndeparture time:  "+departureTime + "\nCapacity: " + capacity + "\n Price: $"+ price;
     }
 
 }

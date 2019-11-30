@@ -26,7 +26,7 @@ import edu.csumb.flightapp.model.User;
 
 public class CreateAccountActivity  extends AppCompatActivity {
     //Check if password & account meet the requirements
-    private static String tester = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+*!=])(?=.*[0-9]).*$";
+    private static String tester = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$])(?=.*[0-9]).*$";
     private Pattern pattern = Pattern.compile(tester);
     private Matcher matcher;
 
