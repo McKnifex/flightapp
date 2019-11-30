@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import androidx.appcompat.app.AlertDialog;
@@ -21,10 +22,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.csumb.flightapp.model.Flight;
 import edu.csumb.flightapp.model.FlightRoom;
+import edu.csumb.flightapp.model.Reservation;
 
 public class SearchActivity extends AppCompatActivity {
 
     public static List<Flight> flights = new ArrayList<Flight>();
+    public static Flight selectedFlight = null;
+    public static int amountTickets = 0;
     Adapter adapter;
 
     @Override
@@ -54,13 +58,14 @@ public class SearchActivity extends AppCompatActivity {
                 EditText no_tickets = findViewById(R.id.no_tickets);
 
                 /*LAB* Check if tickets between 1 and 7 */
-                int tickets = Integer.parseInt(no_tickets.getText().toString());
+                int amountTickets = Integer.parseInt(no_tickets.getText().toString());
 
-                if(tickets > 0 && tickets <= 7){
+                if(amountTickets > 0 && amountTickets <= 7){
                     flights = FlightRoom.getFlightRoom(SearchActivity.this).dao().
                             searchFlight(from.getText().toString(),
-                                    to.getText().toString(),tickets);
+                                    to.getText().toString(),amountTickets);
 
+                    SearchActivity.amountTickets = amountTickets;
                     // notify recycler view that list of flights has changed
                     adapter.notifyDataSetChanged();
                 }else{
@@ -120,6 +125,7 @@ public class SearchActivity extends AppCompatActivity {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    selectedFlight = f;
                     Intent intent = new Intent(SearchActivity.this, CreateReservationActivity.class);
                     startActivity(intent);
                 }

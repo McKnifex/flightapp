@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9a43ea9ed4155e746bca0b47ad36f655",
+    "identityHash": "acb5b3a38f1e55cb884dc3f0f7eea2a3",
     "entities": [
       {
         "tableName": "User",
@@ -144,7 +144,7 @@
       },
       {
         "tableName": "Reservation",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `time` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL, `flightNo` TEXT NOT NULL, `departure` TEXT NOT NULL, `arrival` TEXT NOT NULL, `departureTime` TEXT NOT NULL, `total` REAL NOT NULL, `tickets` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `time` TEXT NOT NULL, `username` TEXT NOT NULL, `flightNo` TEXT NOT NULL, `departure` TEXT NOT NULL, `arrival` TEXT NOT NULL, `departureTime` TEXT NOT NULL, `total` REAL NOT NULL, `tickets` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -161,12 +161,6 @@
           {
             "fieldPath": "username",
             "columnName": "username",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "password",
-            "columnName": "password",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -219,7 +213,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"9a43ea9ed4155e746bca0b47ad36f655\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"acb5b3a38f1e55cb884dc3f0f7eea2a3\")"
     ]
   }
 }

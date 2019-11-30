@@ -48,8 +48,8 @@ public interface FlightDao {
     @Insert
     void addLogRecord(LogRecord rec);
 
-    //@Insert
-    //long addReservation(Reservation res);
+    @Insert
+    long addReservation(Reservation res);
 
     //TODO
     //@Delete

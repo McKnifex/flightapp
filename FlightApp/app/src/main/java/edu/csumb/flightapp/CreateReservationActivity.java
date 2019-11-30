@@ -10,17 +10,26 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.Date;
+
+import edu.csumb.flightapp.model.Flight;
 import edu.csumb.flightapp.model.FlightDao;
 import edu.csumb.flightapp.model.FlightRoom;
+import edu.csumb.flightapp.model.LogRecord;
+import edu.csumb.flightapp.model.Reservation;
 import edu.csumb.flightapp.model.User;
 
 public class CreateReservationActivity extends AppCompatActivity {
 
+    private static Flight selectedFlight = SearchActivity.selectedFlight;
+
+    public static Reservation res = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("CreateReservatiActivity", "onCreate called");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_create_reservation);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -50,8 +59,10 @@ public class CreateReservationActivity extends AppCompatActivity {
                 } else {
                     // successful login
                     MainActivity.username = username.getText().toString();
-                    //Intent intent = new Intent(CreateReservationActivity.this, ConfirmReservationActivity.class);
-                    //startActivity(intent);
+                    CreateReservationActivity.res = new Reservation(MainActivity.username, selectedFlight, SearchActivity.amountTickets);
+                    dao.addReservation(res);
+                    Intent intent = new Intent(CreateReservationActivity.this, ConfirmReservationActivity.class);
+                    startActivity(intent);
                 }
 
             }

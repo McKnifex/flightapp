@@ -4,6 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.text.Normalizer;
+
+import edu.csumb.flightapp.Formatter;
 //import edu.csumb.flightapp.FlightApp
 
 @Entity
@@ -19,8 +23,6 @@ public class Reservation {
     private String time; //reservation time
     @NonNull
     private String username;
-    @NonNull
-    private String password;
     @NonNull
     private String flightNo;
     @NonNull
@@ -40,7 +42,7 @@ public class Reservation {
     @Ignore
     public Reservation(String username, Flight flight, int tickets){
         this.username=username;
-        this. time = new java.util.Date().toString();
+        this.time = new java.util.Date().toString();
         this.flightNo = flight.getFlightNo();
         this.departure = flight.getDeparture();
         this.arrival = flight.getArrival();
@@ -57,11 +59,10 @@ public class Reservation {
                 "\nDeparture: " + departure + " " + departureTime +
                 "\nArrival: " + arrival +
                 "\nNumber of Tickets: " + tickets;
-        if(id!=0){
-            d+= "\nReservation Number: " + id;
-        }
+        d+= "\nReservation Number: " + id;
+
         //Die klasse muss ich noch coden
-        //d+= "\nTotal Cost: $" + FlightApp.formatPrice(total);
+        d+= "\nTotal Cost: $" + Formatter.formatter(total);
         return d;
     }
 
@@ -94,18 +95,10 @@ public class Reservation {
         return username;
     }
 
-    @NonNull
-    public String getPassword() {
-        return password;
-    }
-
     public void setUsername(@NonNull String username) {
         this.username = username;
     }
 
-    public void setPassword(@NonNull String password) {
-        this.password = password;
-    }
 
     @NonNull
     public String getFlightNo() {
