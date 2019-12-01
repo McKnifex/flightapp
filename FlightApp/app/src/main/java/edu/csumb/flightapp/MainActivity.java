@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // call the ShowUser Activity
                 Log.d("MainActivity", "onClick for cancel reservation called");
-                Intent intent = new Intent(MainActivity.this, CreateAccountActivity.class);
+                Intent intent = new Intent(MainActivity.this, CancelReservationActivity.class);
                 startActivity(intent);
 
             }

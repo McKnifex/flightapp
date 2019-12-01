@@ -83,7 +83,7 @@ public class CreateReservationActivity extends AppCompatActivity {
                     // successful login
                     MainActivity.username = username.getText().toString();
                     CreateReservationActivity.res = new Reservation(MainActivity.username, selectedFlight, SearchActivity.amountTickets);
-                    dao.addReservation(res);
+                    res.setId((int)dao.addReservation(res));
                     Intent intent = new Intent(CreateReservationActivity.this, ConfirmReservationActivity.class);
                     startActivity(intent);
                 }

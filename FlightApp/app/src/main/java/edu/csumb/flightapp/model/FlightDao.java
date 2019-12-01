@@ -37,6 +37,9 @@ public interface FlightDao {
     @Update
     void updateFlight(Flight flight);
 
+    @Query("select * from Flight where flightNo=:no")
+    Flight getFlightByFlightNo(String no);
+
     @Query("select * from LogRecord order by time desc")
     List<LogRecord> getAllLogRecords();
 

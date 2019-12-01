@@ -33,7 +33,7 @@ public class ViewLogActivity  extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button return_main_button = findViewById(R.id.return_button);
+        Button return_main_button = findViewById(R.id.confirm);
         return_main_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

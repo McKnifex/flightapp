@@ -50,7 +50,7 @@ public class ConfirmReservationActivity extends AppCompatActivity {
                 //  include username (but not password) in the message.
                 Date now = new Date();
                 LogRecord rec = new LogRecord(now, LogRecord.TYPE_RESERVATION,
-                        MainActivity.username, "");
+                        MainActivity.username, CreateReservationActivity.res.getLog());
                 dao.addLogRecord(rec);
 
                 //Go back to main menu

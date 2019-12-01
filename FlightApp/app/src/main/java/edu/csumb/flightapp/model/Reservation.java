@@ -62,11 +62,20 @@ public class Reservation {
 
     public String getLog() {
         return "Flight No: " + flightNo +
-                " Departure: " + departure + " " + departureTime +
-                " Arrival: " + arrival +
-                " Number of Tickets: " + tickets +
-                " Reservation number: " + id +
-                " Total Cost: $" + Formatter.formatter(total);
+                "\nDeparture: " + departure + " " + departureTime +
+                "\nArrival: " + arrival +
+                "\nNumber of Tickets: " + tickets +
+                "\nReservation number: " + id +
+                "\nTotal Cost: $" + Formatter.formatter(total);
+
+    }
+
+    public String getCancelLog() {
+        return  "Reservation number: " + id +
+                "\nFlight No: " + flightNo +
+                "\nDeparture: " + departure + " " + departureTime +
+                "\nArrival: " + arrival +
+                "\nNumber of Tickets: " + tickets;
 
     }
 
