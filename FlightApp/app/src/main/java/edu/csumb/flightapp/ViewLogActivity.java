@@ -1,5 +1,7 @@
 package edu.csumb.flightapp;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +41,32 @@ public class ViewLogActivity  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("ViewLogActivity", "onClick return called");
-                finish();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ViewLogActivity.this);
+                builder.setTitle("Do you want to add a new flight?");
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ViewLogActivity.this, AddNewFlightActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ViewLogActivity.this,
+                                MainActivity.class);
+
+                        startActivity(intent);
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
             }
         });
 

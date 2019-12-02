@@ -32,7 +32,7 @@ public interface FlightDao {
     List<Flight> searchFlight(String departure, String arrival, int capacity);
 
     @Insert
-    void addFlight(Flight flight);
+    long addFlight(Flight flight);
 
     @Update
     void updateFlight(Flight flight);

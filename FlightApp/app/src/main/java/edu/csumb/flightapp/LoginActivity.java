@@ -1,5 +1,6 @@
 package edu.csumb.flightapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import edu.csumb.flightapp.model.FlightDao;
@@ -37,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
                     MainActivity.username = username.getText().toString();
                     Intent intent = new Intent(LoginActivity.this, ViewLogActivity.class);
                     startActivity(intent);
-                    //finish();
+                    finish();
                 }
 
                 String name = username.getText().toString();
@@ -51,9 +53,21 @@ public class LoginActivity extends AppCompatActivity {
                     msg.setText("User name or password is invalid.");
 
                 } else {
-                    // successful login
-                    MainActivity.username = username.getText().toString();
-                    finish();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setTitle("You are not the administrator!");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(LoginActivity.this,
+                                    MainActivity.class);
+                            finish();
+                            startActivity(intent);
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
                 }
 
             }

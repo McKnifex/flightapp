@@ -15,6 +15,7 @@ public class LogRecord {
     public static final String TYPE_NEW_ACCOUNT ="new account";
     public static final String TYPE_RESERVATION="reservation";
     public static final String TYPE_CANCEL="cancel";
+    public static final String TYPE_NEW_FLIGHT="add flight";
 
     @PrimaryKey(autoGenerate = true)
     @NonNull

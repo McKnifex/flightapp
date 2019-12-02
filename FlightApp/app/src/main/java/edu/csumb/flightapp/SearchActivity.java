@@ -58,12 +58,26 @@ public class SearchActivity extends AppCompatActivity {
                 EditText to = findViewById(R.id.to_city);
                 EditText no_tickets = findViewById(R.id.no_tickets);
 
-                /*if(from.getText().toString().isEmpty()|to.getText().toString().isEmpty()
-                        ||no_tickets.getText().toString().isEmpty()){
-                    Intent intent = new Intent(SearchActivity.this, SearchActivity.class);
-                    finish();
-                    startActivity(intent);
-                }*/
+                //Check if input is empty
+                if(from.getText().toString().isEmpty() || to.getText().toString().isEmpty() ||
+                no_tickets.getText().toString().isEmpty()){
+                    Log.d("SearchActivity","something is empty.");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SearchActivity.this);
+                    builder.setTitle("Please fill out the form correctly.");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(SearchActivity.this,
+                                    SearchActivity.class);
+                            finish();
+                            startActivity(intent);
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    return;
+                }
 
                 /*LAB* Check if tickets between 1 and 7 */
                 int amountTickets = Integer.parseInt(no_tickets.getText().toString());
