@@ -36,6 +36,24 @@ public class ViewLogActivity  extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // retrieve all log records from database
+        records = FlightRoom.getFlightRoom(this).dao().getAllLogRecords();
+
+        if(records.isEmpty()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(ViewLogActivity.this);
+            builder.setTitle("There are no logs to view.");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        }
+
+
         Button return_main_button = findViewById(R.id.confirm);
         return_main_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,11 +88,6 @@ public class ViewLogActivity  extends AppCompatActivity {
             }
         });
 
-        //DONE  use a RecylerView to display LogRecords
-        //   define adapter and item_holder classes
-
-        // retrieve all log records from database
-        records = FlightRoom.getFlightRoom(this).dao().getAllLogRecords();
 
         // create view for listing of all users
         RecyclerView rv = findViewById(R.id.recycler_view);
