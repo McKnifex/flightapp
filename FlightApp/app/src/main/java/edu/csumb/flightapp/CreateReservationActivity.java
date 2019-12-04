@@ -24,7 +24,7 @@ import edu.csumb.flightapp.model.User;
 
 public class CreateReservationActivity extends AppCompatActivity {
 
-    private static Flight selectedFlight = SearchActivity.selectedFlight;
+    private Flight selectedFlight = SearchActivity.selectedFlight;
 
     public static Reservation res = null;
     int tries = 0;

@@ -45,7 +45,6 @@ public class AddNewFlightActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Parsing Input
-                //TODO try-catch
                 String flightNo = flightNo_.getText().toString();
                 String from = from_.getText().toString();
                 String to = to_.getText().toString();
@@ -67,7 +66,24 @@ public class AddNewFlightActivity extends AppCompatActivity {
                     LogRecord rec = new LogRecord(now, LogRecord.TYPE_NEW_FLIGHT,
                             MainActivity.username, addFlight.toString());
                     dao.addLogRecord(rec);
-                    finish();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AddNewFlightActivity.this);
+                    builder.setTitle("Flight added.");
+                    builder.setPositiveButton("Confirm.", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(AddNewFlightActivity.this,
+                                    MainActivity.class);
+                            finish();
+                            startActivity(intent);
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+
+
                 }else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(AddNewFlightActivity.this);
                     builder.setTitle("Flight already exists or you didn't fill out the form correctly.");

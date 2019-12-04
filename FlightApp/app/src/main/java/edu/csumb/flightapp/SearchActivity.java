@@ -89,11 +89,11 @@ public class SearchActivity extends AppCompatActivity {
                     if(flights.isEmpty()){
                         AlertDialog.Builder builder = new AlertDialog.Builder(SearchActivity.this);
                         builder.setTitle("There are no flights available.");
-                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(SearchActivity.this,
-                                        SearchActivity.class);
+                                        MainActivity.class);
 
                                 startActivity(intent);
                             }
@@ -165,7 +165,9 @@ public class SearchActivity extends AppCompatActivity {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d("onClick2","f is: \n" + f.toString());
                     selectedFlight = f;
+                    Log.d("onClick2","selected Flight is: \n" + selectedFlight.toString());
                     flights.clear();
                     Intent intent = new Intent(SearchActivity.this, CreateReservationActivity.class);
                     finish();
